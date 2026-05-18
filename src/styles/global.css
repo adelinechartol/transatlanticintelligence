@@ -128,14 +128,14 @@ body {
 .nav-dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: var(--color-paper);
   border: 1px solid var(--color-rule);
   min-width: 11rem;
   z-index: 100;
-  padding: 0.35rem 0;
+  padding: 0.5rem 0 0.35rem;
 }
 
 .nav-dropdown:hover .nav-dropdown-menu {
