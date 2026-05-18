@@ -113,6 +113,12 @@ body {
   border-bottom-color: var(--color-gold);
 }
 
+.masthead-subscribe {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
 /* ============================================
    Post list (homepage)
    ============================================ */

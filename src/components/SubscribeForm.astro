@@ -1,0 +1,102 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<div class={`subscribe-form${compact ? ' subscribe-form--compact' : ''}`}>
+  <iframe name="subscribe-sink" style="display:none" aria-hidden="true"></iframe>
+  <form
+    action="https://transatlanticintelligence.substack.com/api/v1/free?nojs=true"
+    method="post"
+    target="subscribe-sink"
+    class="subscribe-form__form"
+  >
+    <input
+      type="email"
+      name="email"
+      placeholder="your@email.com"
+      required
+      autocomplete="email"
+      class="subscribe-form__input"
+    />
+    <button type="submit" class="subscribe-form__btn">Subscribe</button>
+  </form>
+  <p class="subscribe-form__thanks" aria-live="polite"></p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.subscribe-form').forEach((block) => {
+    const form = block.querySelector<HTMLFormElement>('.subscribe-form__form')!;
+    const thanks = block.querySelector<HTMLElement>('.subscribe-form__thanks')!;
+    form.addEventListener('submit', () => {
+      setTimeout(() => {
+        form.style.display = 'none';
+        thanks.textContent = 'Thanks — check your inbox to confirm.';
+      }, 400);
+    });
+  });
+</script>
+
+<style>
+  .subscribe-form__form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .subscribe-form__input {
+    flex: 1 1 14rem;
+    padding: 0.55rem 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+    color: var(--color-ink);
+    background: var(--color-paper);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .subscribe-form__input:focus {
+    border-color: var(--color-navy);
+  }
+
+  .subscribe-form__btn {
+    padding: 0.55rem 1.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--color-navy);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .subscribe-form__btn:hover {
+    background: var(--color-gold-dark);
+  }
+
+  .subscribe-form__thanks {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--color-gold-dark);
+    margin: 0.5rem 0 0;
+  }
+
+  .subscribe-form--compact .subscribe-form__input {
+    font-size: 0.875rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .subscribe-form--compact .subscribe-form__btn {
+    font-size: 0.8rem;
+    padding: 0.45rem 1rem;
+  }
+</style>
