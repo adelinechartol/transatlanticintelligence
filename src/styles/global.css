@@ -41,7 +41,7 @@ body {
   margin: 0;
   font-family: var(--font-serif);
   color: var(--color-body);
-  background: var(--color-paper);
+  background: var(--color-cream);
   line-height: 1.6;
 }
 
@@ -117,6 +117,26 @@ body {
   margin-top: 1.25rem;
   display: flex;
   justify-content: center;
+}
+
+.masthead-subscribe-btn {
+  display: inline-block;
+  padding: 0.45rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--color-navy);
+  color: #fff !important;
+  text-decoration: none;
+  border-radius: 2px;
+  border-bottom: none !important;
+  transition: background 0.2s;
+}
+
+.masthead-subscribe-btn:hover {
+  background: var(--color-gold-dark);
 }
 
 /* ============================================

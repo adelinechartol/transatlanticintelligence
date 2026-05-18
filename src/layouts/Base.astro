@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import SubscribeForm from '../components/SubscribeForm.astro';
 
 interface Props {
   title: string;
@@ -36,7 +35,7 @@ const { title, description = 'The business and governance of AI, across the US a
         <a href="/about">About</a>
       </nav>
       <div class="masthead-subscribe">
-        <SubscribeForm compact={true} />
+        <a href="https://transatlanticintelligence.substack.com/subscribe" class="masthead-subscribe-btn">Subscribe</a>
       </div>
     </header>
 
