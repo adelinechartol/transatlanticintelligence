@@ -24,6 +24,13 @@ const { title, description = 'The business and governance of AI, across the US a
       href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
       rel="stylesheet"
     />
+
+    <script is:inline>
+      if (localStorage.getItem('lang') === 'fr') {
+        document.documentElement.classList.add('lang-fr');
+        document.documentElement.lang = 'fr';
+      }
+    </script>
   </head>
   <body>
     <header class="wrap masthead">
@@ -35,19 +42,41 @@ const { title, description = 'The business and governance of AI, across the US a
       <h1 class="masthead-title">
         <a href="/">Transatlantic Intelligence</a>
       </h1>
-      <p class="masthead-tagline">AI · Business · Governance</p>
+      <p class="masthead-tagline">
+        <span class="t-en">AI · Business · Governance</span>
+        <span class="t-fr">IA · Économie · Gouvernance</span>
+      </p>
       <nav class="masthead-nav">
-        <a href="/">Home</a>
+        <a href="/">
+          <span class="t-en">Home</span>
+          <span class="t-fr">Accueil</span>
+        </a>
         <div class="nav-dropdown">
-          <a href="/about">About</a>
+          <a href="/about">
+            <span class="t-en">About</span>
+            <span class="t-fr">À propos</span>
+          </a>
           <div class="nav-dropdown-menu">
-            <a href="/about">About the Newsletter</a>
-            <a href="/about/authors">About the Authors</a>
+            <a href="/about">
+              <span class="t-en">About the Newsletter</span>
+              <span class="t-fr">À propos de la newsletter</span>
+            </a>
+            <a href="/about/authors">
+              <span class="t-en">About the Authors</span>
+              <span class="t-fr">À propos des auteurs</span>
+            </a>
           </div>
         </div>
       </nav>
       <div class="masthead-subscribe">
-        <a href="https://transatlanticintelligence.substack.com/subscribe" class="masthead-subscribe-btn">Subscribe</a>
+        <button class="lang-toggle" aria-label="Switch language">
+          <span class="t-en">FR</span>
+          <span class="t-fr">EN</span>
+        </button>
+        <a href="https://transatlanticintelligence.substack.com/subscribe" class="masthead-subscribe-btn">
+          <span class="t-en">Subscribe</span>
+          <span class="t-fr">S'abonner</span>
+        </a>
       </div>
     </header>
 
@@ -56,18 +85,37 @@ const { title, description = 'The business and governance of AI, across the US a
     </main>
 
     <section class="global-subscribe wrap">
-      <h2 class="global-subscribe__label">Subscribe</h2>
+      <h2 class="global-subscribe__label">
+        <span class="t-en">Subscribe</span>
+        <span class="t-fr">S'abonner</span>
+      </h2>
       <p class="global-subscribe__blurb">
-        AI and governance, across the Atlantic — delivered to your inbox.
+        <span class="t-en">AI and governance, across the Atlantic — delivered to your inbox.</span>
+        <span class="t-fr">IA et gouvernance, de part et d'autre de l'Atlantique — dans votre boîte mail.</span>
       </p>
       <SubscribeForm />
     </section>
 
     <footer class="site-footer">
       <p>
-        Transatlantic Intelligence &middot; Written by Suzanne Chartol &amp; Adeline Chartol &middot;
-        Delivered via <a href="https://transatlanticintelligence.substack.com">Substack</a>
+        <span class="t-en">
+          Transatlantic Intelligence &middot; Written by Suzanne Chartol &amp; Adeline Chartol &middot;
+          Delivered via <a href="https://transatlanticintelligence.substack.com">Substack</a>
+        </span>
+        <span class="t-fr">
+          Transatlantic Intelligence &middot; Écrit par Suzanne Chartol et Adeline Chartol &middot;
+          Publié via <a href="https://transatlanticintelligence.substack.com">Substack</a>
+        </span>
       </p>
     </footer>
+
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.lang-toggle');
+      toggle?.addEventListener('click', () => {
+        const isFr = document.documentElement.classList.toggle('lang-fr');
+        document.documentElement.lang = isFr ? 'fr' : 'en';
+        localStorage.setItem('lang', isFr ? 'fr' : 'en');
+      });
+    </script>
   </body>
 </html>

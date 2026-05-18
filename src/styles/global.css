@@ -410,6 +410,33 @@ body {
 }
 
 /* ============================================
+   Language toggle
+   ============================================ */
+
+.t-fr { display: none; }
+html.lang-fr .t-en { display: none; }
+html.lang-fr .t-fr { display: revert; }
+
+.lang-toggle {
+  background: none;
+  border: 1px solid var(--color-rule);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.lang-toggle:hover {
+  border-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* ============================================
    Global subscribe section (every page)
    ============================================ */
 
