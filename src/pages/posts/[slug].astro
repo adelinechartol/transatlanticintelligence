@@ -1,18 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getPosts } from '../../lib/substack.js';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
-  return posts
-    .filter((post) => post.slug)
-    .map((post) => ({
-      params: { slug: post.slug },
-      props: { post },
-    }));
+  const entries = await getCollection('posts', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id.replace(/\.mdx?$/, '') },
+    props: { entry },
+  }));
 }
 
-const { post } = Astro.props;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const post = entry.data;
 ---
 
 <Base title={`${post.title} — Transatlantic Intelligence`} description={post.description}>
@@ -21,7 +21,7 @@ const { post } = Astro.props;
   <article class="article">
     <h1 class="article-title">{post.title}</h1>
     <p class="article-meta">
-      By <strong>{post.creator}</strong> ·
+      By <strong>{post.author}</strong> ·
       <time datetime={post.pubDate.toISOString()}>
         {post.pubDate.toLocaleDateString('en-GB', {
           year: 'numeric', month: 'long', day: 'numeric'
@@ -29,12 +29,15 @@ const { post } = Astro.props;
       </time>
     </p>
 
-    <div class="article-body" set:html={post.content} />
+    <div class="article-body">
+      <Content />
+    </div>
 
-    <p class="article-footer">
-      Originally published on
-      <a href={post.link}>Substack</a>.
-      Subscribe to get new dispatches by email.
-    </p>
+    {post.substackUrl && (
+      <p class="article-footer">
+        Also published on <a href={post.substackUrl}>Substack</a>.
+        Subscribe to get new dispatches by email.
+      </p>
+    )}
   </article>
 </Base>
