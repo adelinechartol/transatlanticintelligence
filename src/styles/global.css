@@ -423,3 +423,79 @@ body {
   color: var(--color-gold-dark);
   margin: 0 0 1rem;
 }
+
+/* ============================================
+   About page — author cards
+   ============================================ */
+
+.author-card {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 2.5rem 0;
+}
+
+.author-photo-placeholder {
+  flex-shrink: 0;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.author-photo-initials {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+}
+
+.author-bio {
+  flex: 1;
+}
+
+.author-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+  margin: 0 0 0.25rem;
+}
+
+.author-location {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-gold-dark);
+  margin: 0 0 1rem;
+}
+
+.author-placeholder-text {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.author-divider {
+  border: none;
+  border-top: 1px solid var(--color-rule);
+  margin: 2.5rem 0;
+}
+
+@media (max-width: 480px) {
+  .author-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .author-location {
+    justify-content: center;
+  }
+}
