@@ -37,7 +37,13 @@ const { title, description = 'The business and governance of AI, across the US a
       <p class="masthead-tagline">AI · Business · Governance</p>
       <nav class="masthead-nav">
         <a href="/">Home</a>
-        <a href="/about">About</a>
+        <div class="nav-dropdown">
+          <a href="/about">About</a>
+          <div class="nav-dropdown-menu">
+            <a href="/about#newsletter">About the Newsletter</a>
+            <a href="/about#authors">About the Authors</a>
+          </div>
+        </div>
       </nav>
       <div class="masthead-subscribe">
         <a href="https://transatlanticintelligence.substack.com/subscribe" class="masthead-subscribe-btn">Subscribe</a>

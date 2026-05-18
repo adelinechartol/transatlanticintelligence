@@ -5,23 +5,73 @@ import SubscribeForm from '../components/SubscribeForm.astro';
 
 <Base title="About — Transatlantic Intelligence">
   <div class="about">
-    <h1>About</h1>
+    <div class="about-tabs" role="tablist">
+      <button class="about-tab is-active" role="tab" aria-selected="true" aria-controls="panel-newsletter" id="tab-newsletter">
+        About the Newsletter
+      </button>
+      <button class="about-tab" role="tab" aria-selected="false" aria-controls="panel-authors" id="tab-authors">
+        About the Authors
+      </button>
+    </div>
 
-    <p>
-      <strong>Transatlantic Intelligence</strong> covers the business and
-      governance of artificial intelligence — how organisations are adopting
-      it, how to use it effectively, how governments are regulating it, and
-      what the transatlantic relationship means for the future of AI.
-    </p>
+    <div class="about-panel" id="panel-newsletter" role="tabpanel" aria-labelledby="tab-newsletter" data-hash="newsletter">
+      <p>
+        <strong>Transatlantic Intelligence</strong> covers the business and
+        governance of artificial intelligence — how organisations are adopting
+        it, how to use it effectively, how governments are regulating it, and
+        what the transatlantic relationship means for the future of AI.
+      </p>
+      <p>
+        Each issue focuses on the Atlantic crossing between American innovation
+        and European regulation, translating complex policy and technology
+        developments into clear, actionable insight.
+      </p>
+      <div class="subscribe-block">
+        <h2>Subscribe</h2>
+        <SubscribeForm />
+      </div>
+    </div>
 
-    <p>
-      Written by Suzanne Chartol and Adeline Chartol, with a focus on the
-      Atlantic crossing between American innovation and European regulation.
-    </p>
-
-    <div class="subscribe-block">
-      <h2>Subscribe</h2>
-      <SubscribeForm />
+    <div class="about-panel is-hidden" id="panel-authors" role="tabpanel" aria-labelledby="tab-authors" data-hash="authors">
+      <p>
+        <strong>Suzanne Chartol</strong> and <strong>Adeline Chartol</strong>
+        write Transatlantic Intelligence together, bringing perspectives from
+        both sides of the Atlantic on AI's impact on business and society.
+      </p>
+      <p>
+        They share a focus on making sense of the fast-moving intersection
+        between technology and governance — who is building AI, who is
+        regulating it, and what the divergence between Washington and Brussels
+        means for organisations navigating both.
+      </p>
     </div>
   </div>
 </Base>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.about-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.about-panel');
+
+  function activate(hash: string) {
+    const target = document.querySelector<HTMLElement>(`[data-hash="${hash}"]`);
+    if (!target) return;
+    tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+    panels.forEach(p => p.classList.add('is-hidden'));
+    target.classList.remove('is-hidden');
+    const tab = document.getElementById(target.getAttribute('aria-labelledby')!);
+    tab?.classList.add('is-active');
+    tab?.setAttribute('aria-selected', 'true');
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const panelId = tab.getAttribute('aria-controls')!;
+      const hash = document.getElementById(panelId)?.getAttribute('data-hash') ?? '';
+      history.replaceState(null, '', `#${hash}`);
+      activate(hash);
+    });
+  });
+
+  const initial = location.hash.slice(1);
+  if (initial) activate(initial);
+</script>
