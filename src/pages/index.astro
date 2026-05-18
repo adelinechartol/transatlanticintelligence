@@ -1,50 +1,32 @@
 ---
+import Base from '../layouts/Base.astro';
 import { getPosts } from '../lib/substack.js';
 
 const posts = await getPosts();
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Transatlantic Intelligence</title>
-    <meta name="description" content="The business and governance of AI, across the US and Europe." />
-  </head>
-  <body>
-    <header>
-      <h1>Transatlantic Intelligence</h1>
-      <p>The business and governance of AI, across the US and Europe.</p>
-      <nav>
-        <a href="/">Home</a> · <a href="/about">About</a>
-      </nav>
-    </header>
+<Base title="Transatlantic Intelligence">
+  <h2 class="section-label">Recent dispatches</h2>
 
-    <main>
-      <h2>Recent posts</h2>
-      {posts.length === 0 ? (
-        <p>No posts yet — check back soon.</p>
-      ) : (
-        <ul>
-          {posts.map((post) => (
-            <li>
-              <a href={`/posts/${post.slug}/`}>
-                <h3>{post.title}</h3>
-                <time datetime={post.pubDate.toISOString()}>
-                  {post.pubDate.toLocaleDateString('en-GB', {
-                    year: 'numeric', month: 'long', day: 'numeric'
-                  })}
-                </time>
-                <p>{post.description}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
-
-    <footer>
-      <p>Written by Suzanne. Delivered via <a href="https://transatlanticintelligence.substack.com">Substack</a>.</p>
-    </footer>
-  </body>
-</html>
+  {posts.length === 0 ? (
+    <p>No posts yet — check back soon.</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/posts/${post.slug}/`}>
+            <p class="post-list-meta">
+              <time datetime={post.pubDate.toISOString()}>
+                {post.pubDate.toLocaleDateString('en-GB', {
+                  year: 'numeric', month: 'long', day: 'numeric'
+                })}
+              </time>
+            </p>
+            <h2 class="post-list-title">{post.title}</h2>
+            <p class="post-list-desc">{post.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

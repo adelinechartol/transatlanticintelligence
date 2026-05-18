@@ -1,0 +1,351 @@
+/* ============================================
+   Transatlantic Intelligence — design tokens
+   ============================================ */
+
+:root {
+  /* Palette */
+  --color-navy: #0a1628;
+  --color-navy-soft: #1a2942;
+  --color-ink: #0a1628;
+  --color-body: #2a3548;
+  --color-muted: #6b7280;
+  --color-rule: #e5e7eb;
+  --color-cream: #faf8f3;
+  --color-paper: #ffffff;
+  --color-gold: #c9a84c;
+  --color-gold-dark: #a8862e;
+
+  /* Type scale */
+  --font-serif: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Spacing */
+  --measure: 38rem;       /* readable text width */
+  --measure-wide: 56rem;  /* layout container */
+}
+
+/* ============================================
+   Base
+   ============================================ */
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-serif);
+  color: var(--color-body);
+  background: var(--color-paper);
+  line-height: 1.6;
+}
+
+/* ============================================
+   Layout
+   ============================================ */
+
+.wrap {
+  max-width: var(--measure-wide);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+/* ============================================
+   Masthead
+   ============================================ */
+
+.masthead {
+  border-bottom: 1px solid var(--color-rule);
+  padding: 3rem 0 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.masthead-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+}
+
+.masthead-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.masthead-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-muted);
+  margin: 0 0 1.5rem;
+}
+
+.masthead-nav {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.masthead-nav a {
+  color: var(--color-ink);
+  text-decoration: none;
+  margin: 0 0.75rem;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+
+.masthead-nav a:hover {
+  border-bottom-color: var(--color-gold);
+}
+
+/* ============================================
+   Post list (homepage)
+   ============================================ */
+
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-dark);
+  margin: 0 0 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-navy);
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list li {
+  border-bottom: 1px solid var(--color-rule);
+  padding: 2rem 0;
+}
+
+.post-list li:first-child { padding-top: 0; }
+.post-list li:last-child { border-bottom: none; }
+
+.post-list a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.post-list a:hover .post-list-title {
+  color: var(--color-gold-dark);
+}
+
+.post-list-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.625rem;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+  color: var(--color-ink);
+  transition: color 0.2s;
+  letter-spacing: -0.01em;
+}
+
+.post-list-meta {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin: 0 0 0.75rem;
+}
+
+.post-list-desc {
+  font-size: 1.05rem;
+  color: var(--color-body);
+  margin: 0;
+  max-width: var(--measure);
+}
+
+/* ============================================
+   Article page
+   ============================================ */
+
+.article {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.article-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.15;
+  color: var(--color-ink);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.article-meta {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  margin: 0 0 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.article-meta strong { color: var(--color-ink); font-weight: 600; }
+
+.article-body {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.article-body p { margin: 0 0 1.5rem; }
+
+.article-body h2 {
+  font-family: var(--font-serif);
+  font-size: 1.625rem;
+  margin: 3rem 0 1rem;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+}
+
+.article-body h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin: 2rem 0 0.75rem;
+  color: var(--color-ink);
+}
+
+.article-body a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+
+.article-body a:hover {
+  text-decoration-color: var(--color-gold-dark);
+}
+
+.article-body blockquote {
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--color-gold);
+  font-style: italic;
+  color: var(--color-navy);
+}
+
+.article-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+}
+
+.article-back {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+}
+
+.article-back a {
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.article-back a:hover { color: var(--color-gold-dark); }
+
+.article-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-rule);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.article-footer a {
+  color: var(--color-navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-gold);
+}
+
+/* ============================================
+   Site footer
+   ============================================ */
+
+.site-footer {
+  margin-top: 6rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-rule);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.site-footer a {
+  color: var(--color-navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-gold);
+}
+
+/* ============================================
+   About page
+   ============================================ */
+
+.about {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.about h1 {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  margin: 0 0 1.5rem;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+}
+
+.about p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
+}
+
+.subscribe-block {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-rule);
+}
+
+.subscribe-block h2 {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-dark);
+  margin: 0 0 1rem;
+}

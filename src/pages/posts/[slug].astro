@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts } from '../../lib/substack.js';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts
+    .filter((post) => post.slug)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+---
+
+<Base title={`${post.title} — Transatlantic Intelligence`} description={post.description}>
+  <p class="article-back"><a href="/">← All dispatches</a></p>
+
+  <article class="article">
+    <h1 class="article-title">{post.title}</h1>
+    <p class="article-meta">
+      By <strong>{post.creator}</strong> ·
+      <time datetime={post.pubDate.toISOString()}>
+        {post.pubDate.toLocaleDateString('en-GB', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        })}
+      </time>
+    </p>
+
+    <div class="article-body" set:html={post.content} />
+
+    <p class="article-footer">
+      Originally published on
+      <a href={post.link}>Substack</a>.
+      Subscribe to get new dispatches by email.
+    </p>
+  </article>
+</Base>
