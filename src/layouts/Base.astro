@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SubscribeForm from '../components/SubscribeForm.astro';
 
 interface Props {
   title: string;
@@ -53,6 +54,14 @@ const { title, description = 'The business and governance of AI, across the US a
     <main class="wrap">
       <slot />
     </main>
+
+    <section class="global-subscribe wrap">
+      <h2 class="global-subscribe__label">Subscribe</h2>
+      <p class="global-subscribe__blurb">
+        AI and governance, across the Atlantic — delivered to your inbox.
+      </p>
+      <SubscribeForm />
+    </section>
 
     <footer class="site-footer">
       <p>

@@ -425,6 +425,35 @@ body {
 }
 
 /* ============================================
+   Global subscribe section (every page)
+   ============================================ */
+
+.global-subscribe {
+  margin-top: 5rem;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  text-align: center;
+}
+
+.global-subscribe__label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-dark);
+  margin: 0 0 0.5rem;
+}
+
+.global-subscribe__blurb {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin: 0 0 1.25rem;
+}
+
+/* ============================================
    About page — author cards
    ============================================ */
 
@@ -480,6 +509,12 @@ body {
 .author-placeholder-text {
   color: var(--color-muted);
   font-style: italic;
+}
+
+.about-sign-off {
+  font-style: italic;
+  color: var(--color-muted);
+  margin-top: 0.25rem;
 }
 
 .author-divider {
