@@ -33,7 +33,7 @@ const { title, description = 'The business and governance of AI, across the US a
     </script>
   </head>
   <body>
-    <button class="lang-toggle" aria-label="Switch language">
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
       <span class="t-en">FR</span>
       <span class="t-fr">EN</span>
     </button>
@@ -74,10 +74,6 @@ const { title, description = 'The business and governance of AI, across the US a
         </div>
       </nav>
       <div class="masthead-subscribe">
-        <button class="lang-toggle" aria-label="Switch language">
-          <span class="t-en">FR</span>
-          <span class="t-fr">EN</span>
-        </button>
         <a href="https://transatlanticintelligence.substack.com/subscribe" class="masthead-subscribe-btn">
           <span class="t-en">Subscribe</span>
           <span class="t-fr">S'abonner</span>
@@ -115,7 +111,7 @@ const { title, description = 'The business and governance of AI, across the US a
     </footer>
 
     <script>
-      const toggle = document.querySelector<HTMLButtonElement>('.lang-toggle');
+      const toggle = document.getElementById('lang-toggle') as HTMLButtonElement | null;
       toggle?.addEventListener('click', () => {
         const isFr = document.documentElement.classList.toggle('lang-fr');
         document.documentElement.lang = isFr ? 'fr' : 'en';
