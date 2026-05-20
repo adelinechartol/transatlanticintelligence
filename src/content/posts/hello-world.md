@@ -12,9 +12,8 @@ We launch at an unusual moment. The US and EU are pursuing strikingly different 
 
 ## What to expect
 
-Monthly dispatches on:
+Regular dispatches on:
 
-- Deals, hires, and strategic moves at the major AI labs
 - Regulatory developments — the AI Act, executive orders, agency rulings
 - Adoption patterns inside large organisations on both sides of the Atlantic
 - The geopolitics of compute, chips, and data
