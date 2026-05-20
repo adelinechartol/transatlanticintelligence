@@ -12,7 +12,7 @@ We launch at an unusual moment. The US and EU are pursuing strikingly different 
 
 ## What to expect
 
-Twice-weekly dispatches on:
+Monthly dispatches on:
 
 - Deals, hires, and strategic moves at the major AI labs
 - Regulatory developments — the AI Act, executive orders, agency rulings
