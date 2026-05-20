@@ -21,6 +21,9 @@ const { compact = false } = Astro.props;
       autocomplete="email"
       class="subscribe-form__input"
     />
+    <input type="hidden" name="first" value="" />
+    <input type="hidden" name="last" value="" />
+    <input type="hidden" name="source" value="embed" />
     <button type="submit" class="subscribe-form__btn">Subscribe</button>
   </form>
   <p class="subscribe-form__thanks" aria-live="polite"></p>
