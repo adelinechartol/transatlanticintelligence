@@ -3,5 +3,5 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://transatlanticintelligence.ai',
+  site: 'https://www.transatlanticintelligence.ai',
 });
