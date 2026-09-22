@@ -7,7 +7,7 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
-    author: z.string().default('Suzanne'),
+    author: z.string().default('Suzanne Chartol and Adeline Chartol'),
     substackUrl: z.string().url().optional(),
     draft: z.boolean().default(false),
   }),
