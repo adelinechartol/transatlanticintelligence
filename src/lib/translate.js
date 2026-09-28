@@ -3,7 +3,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 // Google Cloud Translation API (v2, API key auth): https://cloud.google.com/translate/docs/reference/rest/v2/translate
-const API_URL = 'https://translation.googleapis.com/language/translate2';
+const API_URL = 'https://translation.googleapis.com/language/translate/v2';
 const CACHE_PATH = path.resolve('src/data/translation-cache.json');
 
 let cache;
@@ -28,15 +28,15 @@ function cacheKey(text, format, target) {
 export async function translate(text, { format = 'text', target = 'fr', logger } = {}) {
   if (!text) return text;
 
-  const apiKey = import.meta.env.GOOGLE_TRANSLATE_API_KEY ?? process.env.GOOGLE_TRANSLATE_API_KEY;
-  if (!apiKey) {
-    logger?.warn('GOOGLE_TRANSLATE_API_KEY is not set — skipping translation, falling back to English.');
-    return text;
-  }
-
   const store = await loadCache();
   const key = cacheKey(text, format, target);
   if (store[key]) return store[key];
+
+  const apiKey = import.meta.env.GOOGLE_TRANSLATE_API_KEY ?? process.env.GOOGLE_TRANSLATE_API_KEY;
+  if (!apiKey) {
+    logger?.warn('GOOGLE_TRANSLATE_API_KEY is not set and no cached translation found — falling back to English.');
+    return text;
+  }
 
   try {
     const res = await fetch(`${API_URL}?key=${apiKey}`, {
