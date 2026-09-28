@@ -7,7 +7,9 @@ export async function getPosts() {
     .map((entry) => ({
       slug: entry.id.replace(/\.mdx?$/, ''),
       title: entry.data.title,
+      titleFr: entry.data.titleFr,
       description: entry.data.description,
+      descriptionFr: entry.data.descriptionFr,
       pubDate: entry.data.pubDate,
       creator: entry.data.author,
       substackUrl: entry.data.substackUrl,

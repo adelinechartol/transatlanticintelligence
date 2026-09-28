@@ -22,8 +22,14 @@ const posts = await getPosts();
                 })}
               </time>
             </p>
-            <h2 class="post-list-title">{post.title}</h2>
-            <p class="post-list-desc">{post.description}</p>
+            <h2 class="post-list-title">
+              <span class="t-en">{post.title}</span>
+              <span class="t-fr">{post.titleFr || post.title}</span>
+            </h2>
+            <p class="post-list-desc">
+              <span class="t-en">{post.description}</span>
+              <span class="t-fr">{post.descriptionFr || post.description}</span>
+            </p>
           </a>
         </li>
       ))}

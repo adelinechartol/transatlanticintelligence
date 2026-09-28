@@ -19,9 +19,13 @@ const post = entry.data;
   <p class="article-back"><a href="/">← All dispatches</a></p>
 
   <article class="article">
-    <h1 class="article-title">{post.title}</h1>
+    <h1 class="article-title">
+      <span class="t-en">{post.title}</span>
+      <span class="t-fr">{post.titleFr || post.title}</span>
+    </h1>
     <p class="article-meta">
-      By <strong>{post.author}</strong> ·
+      <span class="t-en">By <strong>{post.author}</strong> ·</span>
+      <span class="t-fr">Par <strong>{post.author}</strong> ·</span>
       <time datetime={post.pubDate.toISOString()}>
         {post.pubDate.toLocaleDateString('en-GB', {
           year: 'numeric', month: 'long', day: 'numeric'
@@ -29,14 +33,27 @@ const post = entry.data;
       </time>
     </p>
 
-    <div class="article-body">
+    <div class="article-body t-en">
       <Content />
     </div>
+    {post.contentFr ? (
+      <div class="article-body t-fr" set:html={post.contentFr} />
+    ) : (
+      <div class="article-body t-fr">
+        <Content />
+      </div>
+    )}
 
     {post.substackUrl && (
       <p class="article-footer">
-        Also published on <a href={post.substackUrl}>Substack</a>.
-        Subscribe to get new dispatches by email.
+        <span class="t-en">
+          Also published on <a href={post.substackUrl}>Substack</a>.
+          Subscribe to get new dispatches by email.
+        </span>
+        <span class="t-fr">
+          Également publié sur <a href={post.substackUrl}>Substack</a>.
+          Abonnez-vous pour recevoir les nouvelles dépêches par e-mail.
+        </span>
       </p>
     )}
   </article>

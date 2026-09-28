@@ -1,3 +1,5 @@
+import { translate, flushTranslationCache } from './translate.js';
+
 const FEED_URL = 'https://transatlanticintelligence.substack.com/feed';
 const PROXY_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(FEED_URL)}`;
 
@@ -33,21 +35,32 @@ export function substackLoader() {
             ? item.description.slice(0, 200).trimEnd() + '…'
             : item.description || item.title;
 
+        const title = item.title ?? 'Untitled';
+        const [titleFr, descriptionFr, contentFr] = await Promise.all([
+          translate(title, { format: 'text', logger }),
+          translate(description, { format: 'text', logger }),
+          item.content ? translate(item.content, { format: 'html', logger }) : '',
+        ]);
+
         store.set({
           id: slug,
           data: {
-            title: item.title ?? 'Untitled',
+            title,
+            titleFr,
             description,
+            descriptionFr,
             pubDate: new Date(item.pubDate.replace(' ', 'T') + 'Z'),
             author: AUTHOR,
             substackUrl: item.link,
             draft: false,
+            contentFr,
           },
           body: item.content ?? '',
           rendered: item.content ? { html: item.content } : undefined,
         });
       }
 
+      await flushTranslationCache();
       logger.info(`Loaded ${data.items.length} posts from Substack`);
     },
   };
